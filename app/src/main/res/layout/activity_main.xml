@@ -11,6 +11,7 @@
         android:layout_height="match_parent"
         android:text="0"
         android:textSize="32dp"
+        android:gravity="bottom"
         android:textAlignment="textEnd"
         android:textColor="@color/black"
         android:layout_above="@+id/result_tv"
@@ -189,7 +190,7 @@
                 android:layout_margin="12dp"
                 />
             <com.google.android.material.button.MaterialButton
-                android:id="@+id/button_divide"
+                android:id="@+id/button_minus"
                 android:layout_width="72dp"
                 android:layout_height="72dp"
                 app:cornerRadius="20dp"
@@ -244,7 +245,7 @@
                 android:layout_margin="12dp"
                 />
             <com.google.android.material.button.MaterialButton
-                android:id="@+id/button_divide"
+                android:id="@+id/button_sum"
                 android:layout_width="72dp"
                 android:layout_height="72dp"
                 app:cornerRadius="20dp"
@@ -299,7 +300,7 @@
                 android:layout_margin="12dp"
                 />
             <com.google.android.material.button.MaterialButton
-                android:id="@+id/button_divide"
+                android:id="@+id/button_equal"
                 android:layout_width="72dp"
                 android:layout_height="72dp"
                 app:cornerRadius="20dp"

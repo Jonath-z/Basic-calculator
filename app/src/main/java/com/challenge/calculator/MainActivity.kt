@@ -12,15 +12,29 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-         var button_1 = findViewById<Button>(R.id.button_1)
-//        private var button_2 = findViewById<Button>(R.id.button_2)
-//        private var button_3 = findViewById<Button>(R.id.button_3)
-//        private var button_4 = findViewById<Button>(R.id.button_4)
-//        private var button_5 = findViewById<Button>(R.id.button_5)
-//        private var button_6 = findViewById<Button>(R.id.button_6)
-//        private var button_7 = findViewById<Button>(R.id.button_7)
-//        private var button_8 = findViewById<Button>(R.id.button_8)
-//        private var button_9 = findViewById<Button>(R.id.button_9)
+        // remove top bar and set the visibility to full screen
+        window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_FULLSCREEN
+        supportActionBar?.hide()
+
+        // numeral buttons
+        val button0 = findViewById<Button>(R.id.button_0)
+        val button1 = findViewById<Button>(R.id.button_1)
+        val button2 = findViewById<Button>(R.id.button_2)
+        val button3 = findViewById<Button>(R.id.button_3)
+        val button4 = findViewById<Button>(R.id.button_4)
+        val button5 = findViewById<Button>(R.id.button_5)
+        val button6 = findViewById<Button>(R.id.button_6)
+        val button7 = findViewById<Button>(R.id.button_7)
+        val button8 = findViewById<Button>(R.id.button_8)
+        val button9 = findViewById<Button>(R.id.button_9)
+
+        // operations buttons
+        val divide = findViewById<Button>(R.id.button_divide)
+        val multiply = findViewById<Button>(R.id.button_multiply)
+        val minus = findViewById<Button>(R.id.button_minus)
+        val sum = findViewById<Button>(R.id.button_sum)
+        val modulo = findViewById<Button>(R.id.button_modulo)
+        val plusOrMinus = findViewById<Button>(R.id.button_plusOrMinus)
 
 
         val resultTv: TextView = findViewById<TextView>(R.id.result_tv)
@@ -29,13 +43,84 @@ class MainActivity : AppCompatActivity() {
         resultTv.text = ""
         expressionTv.text = ""
 
-         fun addCalculusExpression(expression: String){
-             println(expression)
-            expressionTv.append(expression)
+        fun addCalculusExpression(expression: Int){expressionTv.append(expression.toString())}
+
+        fun addCalculusOperator(operator: Char){
+            val lastChar = expressionTv.text.last()
+
+            if( lastChar != '+' &&
+                lastChar != '-' &&
+                lastChar != '*' &&
+                lastChar != '/' &&
+                lastChar != '%'
+            ){
+                expressionTv.append(operator.toString())
+            }
         }
 
-        button_1.setOnClickListener{addCalculusExpression("1")}
+        fun getCalculusResult(){
+            var expressionList = mutableListOf<any>() // error to fix
 
+            var currentDigit = ""
 
+            // separate character digit and operator signs
+            for(char in expressionTv.text){
+                if(char.isDigit()){
+                    currentDigit += char
+                }else{
+                    expressionList.add(currentDigit.toFloat())
+                    currentDigit = ""
+                    expressionList.add(char)
+                }
+            }
+
+            // TODO -> loop through the expression list and perform the calculus
+
+        }
+
+        fun cleanLatest(){expressionTv.text = expressionTv.text.dropLast(1)}
+
+        fun clean(){
+            resultTv.text = ""
+            expressionTv.text = ""
+        }
+
+        // Add listener to number's button
+        button0.setOnClickListener {addCalculusExpression(0)}
+        button1.setOnClickListener{addCalculusExpression(1)}
+        button2.setOnClickListener{addCalculusExpression(2)}
+        button3.setOnClickListener {addCalculusExpression(3)}
+        button4.setOnClickListener {addCalculusExpression(4)}
+        button5.setOnClickListener {addCalculusExpression(5)}
+        button6.setOnClickListener {addCalculusExpression(6)}
+        button7.setOnClickListener {addCalculusExpression(7)}
+        button8.setOnClickListener {addCalculusExpression(8)}
+        button9.setOnClickListener {addCalculusExpression(9)}
+
+        // add listener to operators button
+        multiply.setOnClickListener {addCalculusOperator('*')}
+        divide.setOnClickListener {addCalculusOperator('/')}
+        minus.setOnClickListener {addCalculusOperator('-')}
+        sum.setOnClickListener {addCalculusOperator('+')}
+        modulo.setOnClickListener {addCalculusOperator('%')}
+
+        // clean last @char
+        findViewById<Button>(R.id.button_C).setOnClickListener{cleanLatest()}
+
+        // clean all
+        findViewById<Button>(R.id.button_reset).setOnClickListener{clean()}
+
+        // perform calculus and display result
+        findViewById<Button>(R.id.button_equal).setOnClickListener{getCalculusResult()}
+
+    }
+
+    // keep the system UI to full screen when the activity resumes
+    override fun onResume() {
+        super.onResume()
+
+        // remove top bar and set the visibility to full screen
+        window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_FULLSCREEN
+        supportActionBar?.hide()
     }
 }
