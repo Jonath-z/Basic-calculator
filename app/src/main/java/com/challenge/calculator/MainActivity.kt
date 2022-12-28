@@ -58,8 +58,9 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
+
         fun getCalculusResult(){
-            var expressionList = mutableListOf<any>() // error to fix
+            var expressionList = mutableListOf<Any>() // error to fix
 
             var currentDigit = ""
 
@@ -73,6 +74,9 @@ class MainActivity : AppCompatActivity() {
                     expressionList.add(char)
                 }
             }
+
+            expressionList.add(currentDigit)
+            println(expressionList)
 
             // TODO -> loop through the expression list and perform the calculus
 
