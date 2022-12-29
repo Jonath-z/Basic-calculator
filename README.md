@@ -11,6 +11,6 @@ A basic calculator made with kotlin, this calculator can allow basic calculation
 
 ## Author
 Jonathan zihindula 
-- [Tweeter](https://twitter.com/JonathanZihind4)
+- [Twiter](https://twitter.com/JonathanZihind4)
 - [LinkedIn](https://www.linkedin.com/in/jonathan-z-0a40ab209/)
 - [Mail](jonathanzihindula95@gmail.com)
