@@ -56,19 +56,19 @@
                 android:layout_margin="12dp"
                 />
             <com.google.android.material.button.MaterialButton
-                android:id="@+id/button_plusOrMinus"
+                android:id="@+id/button_openParenthesis"
                 android:layout_width="72dp"
                 android:layout_height="72dp"
                 app:cornerRadius="20dp"
                 style="@style/ShapeAppearanceOverlay.Material3.FloatingActionButton"
                 android:textSize="20dp"
                 android:textColor="@color/black"
-                android:text="+/-"
+                android:text="("
                 android:backgroundTint="@color/white"
                 android:layout_margin="12dp"
                 />
             <com.google.android.material.button.MaterialButton
-                android:id="@+id/button_modulo"
+                android:id="@+id/button_closeParenthesis"
                 android:layout_width="72dp"
                 android:layout_height="72dp"
                 app:cornerRadius="20dp"
@@ -76,7 +76,7 @@
                 android:textSize="20dp"
                 android:textColor="@color/black"
                 android:backgroundTint="@color/white"
-                android:text="%"
+                android:text=")"
                 android:layout_margin="12dp"
                 />
             <com.google.android.material.button.MaterialButton
@@ -288,7 +288,7 @@
                 android:layout_margin="12dp"
                 />
             <com.google.android.material.button.MaterialButton
-                android:id="@+id/button_3"
+                android:id="@+id/button_dot"
                 android:layout_width="72dp"
                 android:layout_height="72dp"
                 app:cornerRadius="20dp"

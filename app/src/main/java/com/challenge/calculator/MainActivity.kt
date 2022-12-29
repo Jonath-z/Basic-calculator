@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Button
 import android.widget.TextView
+import net.objecthunter.exp4j.ExpressionBuilder
 
 class MainActivity : AppCompatActivity() {
 
@@ -27,14 +28,15 @@ class MainActivity : AppCompatActivity() {
         val button7 = findViewById<Button>(R.id.button_7)
         val button8 = findViewById<Button>(R.id.button_8)
         val button9 = findViewById<Button>(R.id.button_9)
+        val buttonDot = findViewById<Button>(R.id.button_dot)
 
         // operations buttons
         val divide = findViewById<Button>(R.id.button_divide)
         val multiply = findViewById<Button>(R.id.button_multiply)
         val minus = findViewById<Button>(R.id.button_minus)
         val sum = findViewById<Button>(R.id.button_sum)
-        val modulo = findViewById<Button>(R.id.button_modulo)
-        val plusOrMinus = findViewById<Button>(R.id.button_plusOrMinus)
+        val openParenthesis = findViewById<Button>(R.id.button_openParenthesis)
+        val closeParenthesis = findViewById<Button>(R.id.button_closeParenthesis)
 
 
         val resultTv: TextView = findViewById<TextView>(R.id.result_tv)
@@ -47,39 +49,18 @@ class MainActivity : AppCompatActivity() {
 
         fun addCalculusOperator(operator: Char){
             val lastChar = expressionTv.text.last()
-
             if( lastChar != '+' &&
                 lastChar != '-' &&
                 lastChar != '*' &&
-                lastChar != '/' &&
-                lastChar != '%'
+                lastChar != '/'
             ){
                 expressionTv.append(operator.toString())
             }
         }
 
-
         fun getCalculusResult(){
-            var expressionList = mutableListOf<Any>() // error to fix
-
-            var currentDigit = ""
-
-            // separate character digit and operator signs
-            for(char in expressionTv.text){
-                if(char.isDigit()){
-                    currentDigit += char
-                }else{
-                    expressionList.add(currentDigit.toFloat())
-                    currentDigit = ""
-                    expressionList.add(char)
-                }
-            }
-
-            expressionList.add(currentDigit)
-            println(expressionList)
-
-            // TODO -> loop through the expression list and perform the calculus
-
+            var result = ExpressionBuilder(expressionTv.text.toString()).build().evaluate()
+            resultTv.text = result.toString()
         }
 
         fun cleanLatest(){expressionTv.text = expressionTv.text.dropLast(1)}
@@ -101,14 +82,27 @@ class MainActivity : AppCompatActivity() {
         button8.setOnClickListener {addCalculusExpression(8)}
         button9.setOnClickListener {addCalculusExpression(9)}
 
+
         // add listener to operators button
         multiply.setOnClickListener {addCalculusOperator('*')}
         divide.setOnClickListener {addCalculusOperator('/')}
         minus.setOnClickListener {addCalculusOperator('-')}
         sum.setOnClickListener {addCalculusOperator('+')}
-        modulo.setOnClickListener {addCalculusOperator('%')}
 
-        // clean last @char
+        // add listener to parenthesis buttons & dot
+        openParenthesis.setOnClickListener {expressionTv.append("(")}
+        closeParenthesis.setOnClickListener {expressionTv.append(")")}
+
+
+            buttonDot.setOnClickListener {
+                if(expressionTv.text.isNotEmpty()) {
+                    if (expressionTv.text.last().isDigit()) {
+                       expressionTv.append(".")
+                    }
+                }
+            }
+
+        // delete last @char
         findViewById<Button>(R.id.button_C).setOnClickListener{cleanLatest()}
 
         // clean all
