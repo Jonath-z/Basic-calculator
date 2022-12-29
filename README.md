@@ -1,0 +1,12 @@
+# Basic-calculator
+
+A basic calculator made with kotlin, this calculator can allow basic calculations.
+
+## Demo (images)
+
+![Screenshot_20221229_151552](https://user-images.githubusercontent.com/79799120/209962415-42273da9-ce87-4603-b8c4-49c76c346308.png)
+![Screenshot_20221229_154857](https://user-images.githubusercontent.com/79799120/209962781-42f0e4a3-7857-4ebb-b38d-1b1d44e65507.png)
+
+
+# Author
+Jonathan zihindula - [Tweeter](https://twitter.com/JonathanZihind4) - [linkedIn](https://www.linkedin.com/in/jonathan-z-0a40ab209/)
